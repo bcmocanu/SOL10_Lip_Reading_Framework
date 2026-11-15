@@ -1,0 +1,26 @@
+# Python 3.10 / Linux / CUDA 12.1.
+# Instalare: README.md. pip==24.0 este necesar pentru metadata OmegaConf 2.0.6.
+torch==2.1.2+cu121
+numpy==1.23.5
+scipy==1.15.2
+hydra-core==1.0.7
+omegaconf==2.0.6
+PyYAML==6.0.2
+transformers==4.51.1
+peft==0.15.1
+bitsandbytes==0.45.5
+accelerate==1.6.0
+huggingface-hub==0.30.2
+tokenizers==0.21.1
+safetensors==0.5.3
+opencv-python==4.11.0.86
+soundfile==0.13.1
+python-speech-features==0.6
+editdistance==0.8.1
+sentencepiece==0.2.0
+regex==2024.11.6
+tqdm==4.67.1
+psutil==7.0.0
+Cython==3.0.12
+setuptools
+wheel

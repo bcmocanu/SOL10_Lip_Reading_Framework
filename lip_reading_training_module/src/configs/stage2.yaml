@@ -1,0 +1,54 @@
+# Caile relative sunt raportate la directorul proiectului.
+paths:
+  db_root: /media/user/S4A/SOL10/DB_V2
+  models_dir: Models
+  manifest_dir: data/manifests
+  output_dir: Models_Trained/avsr
+  initial_checkpoint: Models/avsr/checkpoint_best.pt
+  # Adaptor si LoRA noi, peste romanizerul ales si Llama local:
+  # initial_checkpoint: null
+  romanizer_checkpoint: Models_Trained/romanizer/checkpoint_best.pt
+data:
+  seed: 42
+  shuffle: true
+  splits:
+    train: TRAIN
+    validation: VALIDATION
+common:
+  seed: 1
+  log_interval: 100
+  empty_cache_freq: 500
+distributed_training:
+  device_id: 0
+task:
+  max_sample_size: 500
+  pad_audio: true
+  random_crop: false
+  image_aug: true
+model:
+  target_modules: q_proj.k_proj.v_proj.o_proj
+  lora_rank: 16
+  lora_alpha: 32
+dataset:
+  num_workers: 3
+  max_tokens: 1000
+  required_batch_size_multiple: 8
+optimization:
+  max_epoch: 50
+  # Limita suplimentara; perioada cosine foloseste bugetul efectiv mai mic.
+  max_update: 130000
+  clip_norm: 1.0
+  update_freq:
+  - 9
+  lr:
+  - 5.0e-05
+optimizer:
+  adam_betas: (0.9,0.98)
+  adam_eps: 1.0e-08
+  weight_decay: 0.0
+lr_scheduler:
+  warmup_updates: 500
+  min_lr: 1.0e-05
+checkpoint:
+  save_interval_updates: 30000
+  keep_interval_updates: 1

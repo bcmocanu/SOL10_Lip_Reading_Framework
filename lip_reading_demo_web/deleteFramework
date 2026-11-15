@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+set -euo pipefail
+ROOT="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd -P)"
+[[ -x /usr/bin/python3 ]] || { echo 'Python3 de sistem lipseste; nicio instalare automata nu a fost facuta.' >&2; exit 1; }
+exec /usr/bin/python3 -I -B "$ROOT/framework/manage.py" delete "$@"
